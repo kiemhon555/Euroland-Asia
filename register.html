@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Document</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+		.invalid {
+			animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+			transform: translate3d(0, 0, 0);
+			backface-visibility: hidden;
+			perspective: 1000px;
+		}
+
+		@keyframes shake {
+			10%, 90% {
+				transform: translate3d(-1px, 0, 0);
+			}
+
+			20%, 80% {
+				transform: translate3d(2px, 0, 0);
+			}
+
+			30%, 50%, 70% {
+				transform: translate3d(-4px, 0, 0);
+			}
+			40%, 60% {
+				transform: translate3d(4px, 0, 0);
+				}
+			}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h3>Register Form</h3>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="uname">Name:</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="uname" type="text" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Email:</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="email" type="text" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pass">Password:</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="pass" type="password" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pass">Retype Password:</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="repass" type="password" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="">Gender:</label>
+				<div class="col-sm-10">
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="male" checked> Male
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="female"> Female
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="">Country:</label>
+				<div class="col-sm-10">
+					<select class="form-control" name="country">
+						<option value="us">United States</option>
+						<option value="en">England</option>
+						<option value="fr">France</option>
+						<option value="de">Germany</option>
+						<option value="ru">Russia</option>
+						<option value="es">Spain</option>
+						<option value="pt">Portugal</option>
+						<option value="ar">Argentina</option>
+						<option value="br">Brazil</option>
+						<option value="cu">Cuba</option>
+						<option value="eg">Egypt</option>
+						<option value="in">India</option>
+						<option value="cn">China</option>
+						<option value="jp">Japan</option>
+						<option value="kr">Korea</option>
+						<option value="vn">Vietnam</option>
+						<option value="au">Australia</option>
+						<option value="nz">New Zealand</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input class="btn btn-primary" type="button" value="Register" onclick="validate()" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script>
+		var regexName = /^[a-zA-Z]{6,}$/;
+		var regexEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+		var regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/;
+
+		var uname = document.getElementById("uname");
+		var email = document.getElementById("email");
+		var pass = document.getElementById("pass");
+		var repass = document.getElementById("repass");
+
+		function validate(){
+			if (!regexName.test(uname.value)) {
+				if (uname.classList.contains("invalid")) {
+					uname.classList.remove("invalid");
+				} else {
+					uname.classList.add("invalid");
+				}
+			}
+
+			if (!regexEmail.test(email.value)) {
+				if (email.classList.contains("invalid")) {
+					email.classList.remove("invalid");
+				} else {
+					email.classList.add("invalid");
+				}
+			}
+
+			if (!regexPass.test(pass.value)) {
+				if (pass.classList.contains("invalid")) {
+					pass.classList.remove("invalid");
+				} else {
+					pass.classList.add("invalid");
+				}
+			}
+
+			if (!(pass.value === repass.value)) {
+				if (repass.classList.contains("invalid")) {
+					repass.classList.remove("invalid");
+				} else {
+					repass.classList.add("invalid");
+				}
+			}
+		}
+	</script>
+</body>
+</html>
